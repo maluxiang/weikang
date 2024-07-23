@@ -1,0 +1,6 @@
+Nacos:
+  SpaceId: a1a0f287-b04b-4ec1-a878-1e3ee676b171
+  Address: 47.103.83.130
+  Port: 8848
+  DataId: global
+  Group: MS

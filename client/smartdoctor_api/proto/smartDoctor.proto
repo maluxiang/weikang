@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package smartDoctor;
+option go_package="./smartDoctor";
+
+message DoctorQuestionRequest {
+  string Question = 1;
+}
+
+message DoctorQuestionResponse {
+  bytes Answer = 1;
+}
+
+message DoctorQuestionListRequest {
+
+}
+
+message DoctorQuestionListResponse {
+  bytes List = 1;
+}
+
+message DoctorQuestionDeleteRequest {
+  int64 Id = 1;
+}
+
+message DoctorQuestionDeleteResponse {
+  int64 Code = 1;
+  string Message = 2;
+}
+
+service SmartDoctor {
+  rpc DoctorQuestion(DoctorQuestionRequest) returns(DoctorQuestionResponse);
+  rpc DoctorQuestionList(DoctorQuestionListRequest) returns(DoctorQuestionListResponse);
+  rpc DoctorQuestionDelete(DoctorQuestionDeleteRequest) returns(DoctorQuestionDeleteResponse);
+}

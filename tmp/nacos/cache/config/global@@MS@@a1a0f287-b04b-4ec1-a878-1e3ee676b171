@@ -1,0 +1,41 @@
+{
+  "Mysql": {
+    "Dsn": "root:mysql_3CFFcn@tcp(47.103.83.130:3306)/2110a?charset=utf8mb4&parseTime=True&loc=Local"
+  },
+  "Redis": {
+    "Addr": "47.103.83.130:6379",
+    "Password": "jhkdjhkjdhsIUTYURTU_Zb3MEB"
+  },
+  "Es": {
+    "Url": "http://47.103.83.130:9200"
+  },
+  "Mongo": {
+    "ApplyURI": "mongodb://mongo_DrdyHQ:mongo_hMjyEi@47.103.83.130:27017"
+  },
+  "RabbitMQ": {
+    "Url": "amqp://rabbitmq:rabbitmq@127.0.0.1:5672"
+  },
+  "Consul": {
+    "RpcName": "weikang", 
+    "RpcPortString": "8080", 
+    "RpcPortInt": 8080, 
+    "RpcAddress": "127.0.0.1", 
+    "Address": "47.103.83.130:8500" 
+  },
+  "ChatGpt": {
+    "hostUrl" :   "wss://spark-api.xf-yun.com/v3.5/chat",
+	  "appid":      "ab887b4a",
+	  "apiSecret":  "MzBhYjcyMmIxNjM0MmVhOTA0OWE0YWQ1",
+	  "apiKey":     "3aab5bf3a0e884e582380bd01f275fe2"
+  },
+  "Emqx": {
+    "agreement": "tcp",
+    "host": "47.103.83.130",
+    "post": 1883
+  },
+  "Minio":{
+   "endpoint":"47.103.83.130:9000",
+   "accessKeyId":"XAFXcG57mxyRGbOfTp8M",
+   "secretAccessKey":"10rkACyvwmIyHJnNVmAPTBHxsOeDj0dioaz88a1Q"
+  }
+}

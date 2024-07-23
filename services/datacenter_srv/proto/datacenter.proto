@@ -1,0 +1,80 @@
+syntax = "proto3";
+package datacenter;
+option go_package="./datacenter";
+
+message Request {
+  string ping = 1;
+}
+
+message Response {
+  string pong = 1;
+}
+
+// 健康数据上报请求
+message ReportHealthDataRequest {
+  string device_id = 2;
+  string user_id = 3;
+  string  timestamp = 4;
+  int32 heart_rate = 5;
+  int32 blood_pressure_systolic = 6;
+  int32 blood_pressure_diastolic = 7;
+  double body_temperature = 8;
+  int32 steps = 9;
+  int32 sleep_duration_minutes = 10;
+  int32 activity_calories_burned = 11;
+  double blood_glucose = 12;
+  double weight = 13;
+  double height = 14;
+  string device_status = 15;
+}
+// 健康数据上报响应
+message ReportHealthDataResponse {
+  bool success = 1;
+  string message = 2;
+}
+// 健康数据信息
+message HealthDataInfo {
+  int64 Id=1;
+  string device_id = 2;
+  string user_id = 3;
+  string  timestamp = 4;
+  int32 heart_rate = 5;
+  int32 blood_pressure_systolic = 6;
+  int32 blood_pressure_diastolic = 7;
+  double body_temperature = 8;
+  int32 steps = 9;
+  int32 sleep_duration_minutes = 10;
+  int32 activity_calories_burned = 11;
+  double blood_glucose = 12;
+  double weight = 13;
+  double height = 14;
+  string device_status = 15;
+}
+// 健康数据列表请求
+message ReportHealthDataListRequest{
+
+}
+// 健康数据列表响应
+message ReportHealthDataListResponse{
+   repeated HealthDataInfo HealthDataInfo=1;
+}
+
+// 健康数据删除
+message ReportHealthDataDeleteRequest{
+  int64 Id = 1;
+}
+
+message ReportHealthDataDeleteResponse{
+  int64 Code = 1;
+  string Message = 2;
+}
+
+service Datacenter {
+  rpc Ping(Request) returns(Response);
+  // 健康数据上报
+  rpc ReportHealthData(ReportHealthDataRequest) returns (ReportHealthDataResponse);
+  // 获取健康数据列表
+  rpc ReportHealthDataList(ReportHealthDataListRequest) returns (ReportHealthDataListResponse);
+  // 健康数据删除
+  rpc ReportHealthDataDelete(ReportHealthDataDeleteRequest) returns (ReportHealthDataDeleteResponse);
+}

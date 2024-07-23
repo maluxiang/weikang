@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package points;
+option go_package = "./points";
+
+message CreatePointsRequest {
+  int64 UserID = 1;
+  int64 Points = 2;
+}
+
+message CreatePointsResponse {
+  bool Success = 1;
+}
+
+message PointsInfo{
+  int64 UserID = 1;
+  int64 Points = 2;
+}
+
+message GetUserAllPointsRequest {
+
+}
+
+message GetUserAllPointsResponse {
+ repeated PointsInfo PointsList = 1;
+}
+
+message UpdatePointsRequest {
+  int64 UserID = 1;
+  int64 Points = 2;
+}
+
+message UpdatePointsResponse {
+  bool Success = 1;
+}
+
+message DeletePointsRequest {
+  int64 UserID = 1;
+}
+
+message DeletePointsResponse {
+  bool Success = 1;
+}
+
+message UpdatePointsCompensationRequest {
+  int64 UserID = 1;
+  int64 Points = 2;
+}
+
+message UpdatePointsCompensationResponse {
+  bool Success = 1;
+}
+
+service Points {
+  rpc CreatePoints(CreatePointsRequest) returns (CreatePointsResponse);
+  rpc GetUserAllPoints(GetUserAllPointsRequest) returns (GetUserAllPointsResponse);
+  rpc UpdatePoints(UpdatePointsRequest) returns (UpdatePointsResponse);
+  rpc UpdatePointsCompensation(UpdatePointsCompensationRequest) returns (UpdatePointsCompensationResponse);
+  rpc DeletePoints(DeletePointsRequest) returns (DeletePointsResponse);
+}

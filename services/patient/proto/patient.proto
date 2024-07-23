@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package patient;
+option go_package="./patient";
+
+
+message RegisterReq {
+  string Name = 10;
+  int64 age = 20;
+  Sex sex = 30;
+  string IdCard=40;
+  string Phone=50;
+  string Department=60;
+  string Doctor=70;
+  int64 Status=80;
+}
+
+enum Sex{
+  default =0;
+  Man=10;
+  Woman=20;
+}
+
+message RegisterResp {
+  int64 code=10;
+  string msg = 20;
+}
+
+service Patient {
+  rpc Register(RegisterReq) returns(RegisterResp);
+}

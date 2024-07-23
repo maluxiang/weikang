@@ -1,0 +1,95 @@
+{"level":"error","ts":1718843689.7184727,"caller":"start/mysql.go:20","msg":"MySQL连接失败dial tcp :0: connectex: The requested address is not valid in its context.","stacktrace":"weikang/start.Mysql\n\tC:/GOPATH/src/shixun1/weikang/start/mysql.go:20\nweikang/start.Init\n\tC:/GOPATH/src/shixun1/weikang/start/init.go:7\nmain.init.0\n\tC:/GOPATH/src/shixun1/weikang/services/user_svc/main.go:15\nruntime.doInit1\n\tC:/Program Files/Go/src/runtime/proc.go:7176\nruntime.doInit\n\tC:/Program Files/Go/src/runtime/proc.go:7143\nruntime.main\n\tC:/Program Files/Go/src/runtime/proc.go:253"}
+{"level":"info","ts":1718843689.719583,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"error","ts":1718843691.779466,"caller":"server/server.go:31","msg":"注册服务实例失败Put \"http://47.103.83.130/v1/agent/service/register\": dial tcp 47.103.83.130:80: connectex: No connection could be made because the target machine actively refused it.","stacktrace":"weikang/services/user_svc/server.RegisterGRPCServerToConsul\n\tC:/GOPATH/src/shixun1/weikang/services/user_svc/server/server.go:31\nmain.main.func1\n\tC:/GOPATH/src/shixun1/weikang/services/user_svc/main.go:29"}
+{"level":"error","ts":1718843691.779466,"caller":"user_svc/main.go:31","msg":"服务注册到Consul失败:Put \"http://47.103.83.130/v1/agent/service/register\": dial tcp 47.103.83.130:80: connectex: No connection could be made because the target machine actively refused it.","stacktrace":"main.main.func1\n\tC:/GOPATH/src/shixun1/weikang/services/user_svc/main.go:31"}
+{"level":"info","ts":1718843859.2653606,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"error","ts":1718843861.3376505,"caller":"server/server.go:31","msg":"注册服务实例失败Put \"http://47.103.83.130/v1/agent/service/register\": dial tcp 47.103.83.130:80: connectex: No connection could be made because the target machine actively refused it.","stacktrace":"weikang/services/user_svc/server.RegisterGRPCServerToConsul\n\tC:/GOPATH/src/shixun1/weikang/services/user_svc/server/server.go:31\nmain.main.func1\n\tC:/GOPATH/src/shixun1/weikang/services/user_svc/main.go:29"}
+{"level":"error","ts":1718843861.3376505,"caller":"user_svc/main.go:31","msg":"服务注册到Consul失败:Put \"http://47.103.83.130/v1/agent/service/register\": dial tcp 47.103.83.130:80: connectex: No connection could be made because the target machine actively refused it.","stacktrace":"main.main.func1\n\tC:/GOPATH/src/shixun1/weikang/services/user_svc/main.go:31"}
+{"level":"info","ts":1718843918.760403,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1718844158.546535,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1718844177.7035456,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1718844757.6484056,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"error","ts":1718961859.89593,"caller":"user_svc/main.go:21","msg":"Listen error:listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","stacktrace":"main.main\n\tD:/gowork/ElectronicBusiness/weikang/services/user_svc/main.go:21\nruntime.main\n\tD:/gowork/go1.22.2/src/runtime/proc.go:271"}
+{"level":"info","ts":1718961881.9996874,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719018537.720852,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719143599.7668986,"caller":"smartdoctor_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719143924.832203,"caller":"smartdoctor_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719146213.4741378,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719197162.7785268,"caller":"smartdoctor_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719211939.984783,"caller":"start/minio.go:18","msg":"minio连接失败"}
+{"level":"info","ts":1719212094.577038,"caller":"start/minio.go:21","msg":"Minio 连接失败:Endpoint url cannot have fully qualified paths."}
+{"level":"info","ts":1719212094.5790145,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:52960"}
+{"level":"info","ts":1719212155.8599958,"caller":"start/minio.go:21","msg":"Minio 连接失败:Endpoint url cannot have fully qualified paths."}
+{"level":"info","ts":1719212155.8630114,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:52989"}
+{"level":"info","ts":1719212292.0440042,"caller":"start/minio.go:21","msg":"Minio 连接失败:Endpoint url cannot have fully qualified paths."}
+{"level":"info","ts":1719212292.0485463,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:53235"}
+{"level":"info","ts":1719212528.1651268,"caller":"start/minio.go:21","msg":"Minio 连接失败:Endpoint url cannot have fully qualified paths."}
+{"level":"info","ts":1719212528.1691594,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:53390"}
+{"level":"info","ts":1719212634.4133465,"caller":"start/minio.go:21","msg":"Minio 连接失败:Endpoint url cannot have fully qualified paths."}
+{"level":"info","ts":1719212634.4158144,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:53518"}
+{"level":"info","ts":1719212713.189006,"caller":"start/minio.go:21","msg":"Minio 连接失败:Endpoint url cannot have fully qualified paths."}
+{"level":"info","ts":1719212713.1916199,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:53557"}
+{"level":"info","ts":1719212744.0012596,"caller":"start/minio.go:22","msg":"Minio 连接失败:Endpoint url cannot have fully qualified paths."}
+{"level":"info","ts":1719212744.0028737,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:53589"}
+{"level":"info","ts":1719212828.0154233,"caller":"start/minio.go:25","msg":"Minio 连接成功"}
+{"level":"info","ts":1719212828.0350466,"caller":"start/minio.go:31","msg":"Minio 测试连接失败:Get \"https://47.103.83.130:9001/\": http: server gave HTTP response to HTTPS client"}
+{"level":"info","ts":1719212828.0366364,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:53621"}
+{"level":"info","ts":1719212930.7494836,"caller":"start/minio.go:25","msg":"Minio 连接成功"}
+{"level":"info","ts":1719212930.768534,"caller":"start/minio.go:31","msg":"Minio 测试连接失败:S3 API Requests must be made to API port."}
+{"level":"info","ts":1719212930.7711537,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:53675"}
+{"level":"info","ts":1719212971.4610868,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719212971.4631805,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:53697"}
+{"level":"info","ts":1719214295.31378,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719214352.2844954,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719214615.443265,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719214704.0287642,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719214753.4091997,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719214801.7064636,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719214865.084842,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719214912.5135694,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719214912.5151937,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:54397"}
+{"level":"info","ts":1719215061.7498188,"caller":"start/minio.go:23","msg":"Minio 连接成功"}
+{"level":"info","ts":1719227977.1631331,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719227977.163639,"caller":"start/minio.go:27","msg":"Minio 测试连接成功"}
+{"level":"info","ts":1719227977.1660602,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:55316"}
+{"level":"info","ts":1719227995.3652463,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719227995.3652463,"caller":"start/minio.go:27","msg":"Minio 测试连接成功"}
+{"level":"info","ts":1719228418.2135067,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719228418.2135067,"caller":"start/minio.go:27","msg":"Minio 测试连接成功"}
+{"level":"info","ts":1719228422.1376657,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719228422.1381733,"caller":"start/minio.go:27","msg":"Minio 测试连接成功"}
+{"level":"info","ts":1719228422.1404595,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:56471"}
+{"level":"info","ts":1719228594.7571664,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719228594.7571664,"caller":"start/minio.go:27","msg":"Minio 测试连接成功"}
+{"level":"info","ts":1719228891.170679,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719228891.170679,"caller":"start/minio.go:27","msg":"Minio 测试连接成功"}
+{"level":"info","ts":1719228939.9242375,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719228939.9242375,"caller":"start/minio.go:27","msg":"Minio 测试连接成功"}
+{"level":"info","ts":1719229298.371383,"caller":"start/minio.go:24","msg":"Minio 连接成功"}
+{"level":"info","ts":1719229298.371888,"caller":"start/minio.go:27","msg":"Minio 测试连接成功"}
+{"level":"info","ts":1719229527.5082161,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:57513"}
+{"level":"info","ts":1719229690.4743521,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:"}
+{"level":"info","ts":1719229720.950022,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:57697"}
+{"level":"info","ts":1719230003.5583737,"caller":"user_svc/main.go:28","msg":"服务启动成功,端口:[::]:58405"}
+{"level":"info","ts":1719230023.883603,"caller":"user_svc/main.go:29","msg":"服务启动成功,端口:[::]:58437"}
+{"level":"error","ts":1719230126.1276708,"caller":"user_svc/main.go:24","msg":"Listen error:listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","stacktrace":"main.main\n\tD:/document/empire/weikang/services/user_svc/main.go:24\nruntime.main\n\tC:/Users/DELL/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.3.windows-amd64/src/runtime/proc.go:271"}
+{"level":"error","ts":1719230140.0727203,"caller":"user_svc/main.go:24","msg":"Listen error:listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","stacktrace":"main.main\n\tD:/document/empire/weikang/services/user_svc/main.go:24\nruntime.main\n\tC:/Users/DELL/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.3.windows-amd64/src/runtime/proc.go:271"}
+{"level":"error","ts":1719230169.8340564,"caller":"user_svc/main.go:24","msg":"Listen error:listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","stacktrace":"main.main\n\tD:/document/empire/weikang/services/user_svc/main.go:24\nruntime.main\n\tC:/Users/DELL/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.22.3.windows-amd64/src/runtime/proc.go:271"}
+{"level":"info","ts":1719230218.8956351,"caller":"user_svc/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719231253.800964,"caller":"user_svc/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719231286.6180649,"caller":"user_svc/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719232212.196425,"caller":"user_svc/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719284443.4445174,"caller":"patient/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+<<<<<<< HEAD
+{"level":"info","ts":1719318594.6103323,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719318871.8059292,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719369120.4641116,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+=======
+{"level":"info","ts":1719541574.0045028,"caller":"smartdoctor_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719543084.5354166,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719544880.5315487,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719554569.8231485,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+>>>>>>> main
+{"level":"info","ts":1719556711.0974019,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719623186.8823717,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1719623234.7208,"caller":"points_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
