@@ -93,3 +93,34 @@
 {"level":"info","ts":1719556711.0974019,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
 {"level":"info","ts":1719623186.8823717,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
 {"level":"info","ts":1719623234.7208,"caller":"points_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"error","ts":1751343678.051172,"caller":"start/mysql.go:14","msg":"MySQL连接失败dial tcp 47.103.83.130:3306: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.","stacktrace":"weikang/start.Mysql\n\tD:/student/gowork/src/one/weikang/start/mysql.go:14\nweikang/start.Init\n\tD:/student/gowork/src/one/weikang/start/init.go:7\nmain.init.0\n\tD:/student/gowork/src/one/weikang/services/points_svc/main.go:15\nruntime.doInit1\n\tD:/student/gowork/go1.24.3/src/runtime/proc.go:7353\nruntime.doInit\n\tD:/student/gowork/go1.24.3/src/runtime/proc.go:7320\nruntime.main\n\tD:/student/gowork/go1.24.3/src/runtime/proc.go:254"}
+{"level":"fatal","ts":1751343708.0525072,"caller":"start/mongodb.go:27","msg":"MongoDB连接失败{error 26 0  server selection error: server selection timeout, current topology: { Type: Unknown, Servers: [{ Addr: 47.103.83.130:27017, Type: Unknown, Last error: dial tcp 47.103.83.130:27017: i/o timeout }, ] }}","stacktrace":"weikang/start.Mongo\n\tD:/student/gowork/src/one/weikang/start/mongodb.go:27\nweikang/start.Init\n\tD:/student/gowork/src/one/weikang/start/init.go:8\nmain.init.0\n\tD:/student/gowork/src/one/weikang/services/points_svc/main.go:15\nruntime.doInit1\n\tD:/student/gowork/go1.24.3/src/runtime/proc.go:7353\nruntime.doInit\n\tD:/student/gowork/go1.24.3/src/runtime/proc.go:7320\nruntime.main\n\tD:/student/gowork/go1.24.3/src/runtime/proc.go:254"}
+{"level":"info","ts":1751509472.96837,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"error","ts":1751509560.0437515,"caller":"patient/main.go:21","msg":"Listen error:listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","stacktrace":"main.main\n\tD:/student/gowork/src/one/weikang/services/patient/main.go:21\nruntime.main\n\tD:/student/go/src/runtime/proc.go:272"}
+{"level":"error","ts":1751511193.2442484,"caller":"patient/main.go:21","msg":"Listen error:listen tcp :8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","stacktrace":"main.main\n\tD:/student/gowork/src/one/weikang/services/patient/main.go:21\nruntime.main\n\tD:/student/go/src/runtime/proc.go:272"}
+{"level":"info","ts":1751511364.00585,"caller":"patient/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1751511508.01092,"caller":"patient/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1751511564.318754,"caller":"points_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1751511603.7536068,"caller":"smartdoctor_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1751511632.3116739,"caller":"user_svc/main.go:26","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1751524686.7453105,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"error","ts":1751524793.9357731,"caller":"patient/main.go:20","msg":"Listen error:listen tcp :8081: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.","stacktrace":"main.main\n\tD:/student/gowork/src/one/weikang/services/patient/main.go:20\nruntime.main\n\tD:/student/go/src/runtime/proc.go:272"}
+{"level":"info","ts":1751525000.1096878,"caller":"patient/main.go:25","msg":"服务启动成功,端口:[::]:8001"}
+{"level":"info","ts":1751525043.7290714,"caller":"patient/main.go:25","msg":"服务启动成功,端口:[::]:8001"}
+{"level":"info","ts":1751525142.6455047,"caller":"points_svc/main.go:25","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751525145.5971127,"caller":"smartdoctor_svc/main.go:25","msg":"服务启动成功,端口:[::]:8003"}
+{"level":"info","ts":1751525167.0739717,"caller":"user_svc/main.go:25","msg":"服务启动成功,端口:[::]:8004"}
+{"level":"info","ts":1751547513.6193495,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751550873.1614985,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751552568.4487972,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751552596.324816,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751552689.0145195,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751552718.0464745,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751553084.5870404,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751553171.194613,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751591746.6641784,"caller":"datacenter_srv/main.go:29","msg":"服务启动成功,端口:[::]:8080"}
+{"level":"info","ts":1751591755.6784103,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751591814.7760751,"caller":"patient/main.go:25","msg":"服务启动成功,端口:[::]:8001"}
+{"level":"info","ts":1751591892.5190835,"caller":"user_svc/main.go:25","msg":"服务启动成功,端口:[::]:8004"}
+{"level":"info","ts":1751595140.1195161,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}
+{"level":"info","ts":1751595400.8311718,"caller":"points_svc/main.go:27","msg":"服务启动成功,端口:[::]:8002"}

@@ -6,6 +6,7 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/vo"
 	"go.uber.org/zap"
+	"log"
 	"weikang/global"
 )
 
@@ -46,6 +47,7 @@ func Nacos() {
 		return
 	}
 	err = json.Unmarshal([]byte(content), &global.NacosConfig)
+	log.Println(content, global.NacosConfig)
 	if err != nil {
 		zap.S().Error("解析配置失败:", err.Error())
 		return

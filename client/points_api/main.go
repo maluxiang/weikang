@@ -22,5 +22,5 @@ func main() {
 	r := gin.Default()
 	path := r.Group("/v1")
 	router.Points(path)
-	r.Run(":8888")
+	r.Run(":8882")
 }

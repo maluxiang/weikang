@@ -24,7 +24,7 @@
 				console.log("按钮被点了")
 				var formData = this.formData
 				uni.request({
-				    url: 'http://127.0.0.1:8888/v1/doctor/question', //仅为示例，并非真实接口地址。
+				    url: 'http://127.0.0.1:8883/v1/doctor/question', //仅为示例，并非真实接口地址。
 				    data: {
 				        text: 'uni.request'
 				    },

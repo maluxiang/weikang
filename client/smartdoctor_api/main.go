@@ -24,7 +24,7 @@ func main() {
 	r.Use(Cors())
 	path := r.Group("/v1")
 	router.Doctor(path)
-	r.Run(":8888")
+	r.Run(":8883")
 }
 
 func Cors() gin.HandlerFunc {

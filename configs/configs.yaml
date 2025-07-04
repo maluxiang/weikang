@@ -1,6 +1,6 @@
 Nacos:
-  SpaceId: a1a0f287-b04b-4ec1-a878-1e3ee676b171
-  Address: 47.103.83.130
+  SpaceId: 38b2454c-aed8-44d9-993d-1d40cb6baabe
+  Address: 14.103.235.214
   Port: 8848
-  DataId: global
-  Group: MS
+  DataId: medical_id
+  Group: medical_group

@@ -18,8 +18,8 @@ func (s Server) ReportHealthDataList(ctx context.Context, request *datacenter.Re
 	for _, healthData := range health {
 		list = append(list, &datacenter.HealthDataInfo{
 			Id:                     int64(healthData.ID),
-			DeviceId:               healthData.DeviceID,
-			UserId:                 healthData.UserID,
+			DeviceId:               healthData.DeviceId,
+			UserId:                 healthData.UserId,
 			Timestamp:              healthData.Timestamp,
 			HeartRate:              int32(healthData.HeartRate),
 			BloodPressureSystolic:  int32(healthData.BloodPressureSystolic),

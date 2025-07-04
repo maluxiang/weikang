@@ -28,7 +28,7 @@
 				methods: {
 					getUserList() {
 						uni.request({
-						    url: "http://127.0.0.1:8888/v1/doctor/list", //仅为示例，并非真实接口地址。
+						    url: "http://127.0.0.1:8883/v1/doctor/list", //仅为示例，并非真实接口地址。
 						    data: {
 						        //text: 'uni.request'
 						    },

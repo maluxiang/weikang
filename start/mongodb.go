@@ -2,31 +2,38 @@ package start
 
 import (
 	"context"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"log"
+	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.uber.org/zap"
 	"weikang/global"
 )
 
 // Mongo mongodb连接和MongoDB连接池
 func Mongo() {
+	var err error
+	// 设置 MongoDB 连接选项
 	clientOptions := options.Client().ApplyURI(global.NacosConfig.Mongo.ApplyURI)
 	clientOptions.SetMaxPoolSize(20) // 设置最大连接池大小
 	clientOptions.SetMinPoolSize(5)  // 设置最小连接池大小
-
-	client, err := mongo.Connect(context.Background(), clientOptions)
+	clientOptions.SetConnectTimeout(10 * time.Second)
+	// 连接到 MongoDB
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	global.MongoClient, err = mongo.Connect(ctx, clientOptions)
 	if err != nil {
-		zap.S().Fatal("MongoDB连接失败", zap.Error(err))
-		return
+		log.Fatalf("连接 MongoDB 失败：%v", err)
+	}
+	// 验证连接
+	ctx, cancel = context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+
+	err = global.MongoClient.Ping(ctx, readpref.Primary())
+	if err != nil {
+		log.Fatalf("验证 MongoDB 连接失败：%v", err)
 	}
 
-	// 确保连接池连接的可用性
-	err = client.Ping(context.Background(), nil)
-	if err != nil {
-		zap.S().Fatal("MongoDB连接失败", zap.Error(err))
-		return
-	}
-
-	global.MongoCollection = client.Database("2110a").Collection("day")
+	global.MongoCollection = global.MongoClient.Database("2210a").Collection("users")
 }

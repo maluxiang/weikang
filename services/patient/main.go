@@ -4,7 +4,6 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"net"
-	"weikang/global"
 	"weikang/services/patient/logic"
 	"weikang/services/patient/proto/patient"
 	"weikang/services/patient/server"
@@ -16,7 +15,7 @@ func init() {
 }
 
 func main() {
-	listen, err := net.Listen("tcp", ":"+global.NacosConfig.Consul.RpcPortString)
+	listen, err := net.Listen("tcp", ":"+"8001")
 	if err != nil {
 		zap.S().Error("Listen error:", err)
 		return

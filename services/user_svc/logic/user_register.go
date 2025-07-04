@@ -9,7 +9,7 @@ import (
 
 func (Server) Register(ctx context.Context, in *user.RegisterRequest) (*user.RegisterResponse, error) {
 	// 实现用户注册的逻辑
-	u := models.User{
+	u := models.Users{
 		Username: in.User.Username,
 		Password: common.MD5(in.User.Password),
 		Email:    in.User.Email,

@@ -17,7 +17,7 @@ func init() {
 }
 
 func main() {
-	listen, err := net.Listen("tcp", ":"+global.NacosConfig.Consul.RpcPortString)
+	listen, err := net.Listen("tcp", ":"+"8080")
 	fmt.Println(global.NacosConfig.Consul.RpcPortString)
 
 	if err != nil {

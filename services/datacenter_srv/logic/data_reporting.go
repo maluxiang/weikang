@@ -2,6 +2,8 @@ package logic
 
 import (
 	"context"
+	"gorm.io/gorm"
+	"time"
 	"weikang/models"
 	"weikang/pkg"
 	"weikang/services/datacenter_srv/proto/datacenter"
@@ -9,20 +11,23 @@ import (
 
 func (s Server) ReportHealthData(ctx context.Context, request *datacenter.ReportHealthDataRequest) (*datacenter.ReportHealthDataResponse, error) {
 	health := &models.HealthData{
-		DeviceID:               request.DeviceId,
-		UserID:                 request.UserId,
+		DeviceId:               request.DeviceId,
+		UserId:                 request.UserId,
 		Timestamp:              request.Timestamp,
-		HeartRate:              int(request.HeartRate),
-		BloodPressureSystolic:  int(request.BloodPressureSystolic),
-		BloodPressureDiastolic: int(request.BloodPressureDiastolic),
+		HeartRate:              int64(int(request.HeartRate)),
+		BloodPressureSystolic:  int64(int(request.BloodPressureSystolic)),
+		BloodPressureDiastolic: int64(int(request.BloodPressureDiastolic)),
 		BodyTemperature:        request.BodyTemperature,
-		Steps:                  int(request.Steps),
-		SleepDurationMinutes:   int(request.SleepDurationMinutes),
-		ActivityCaloriesBurned: int(request.ActivityCaloriesBurned),
+		Steps:                  int64(int(request.Steps)),
+		SleepDurationMinutes:   int64(int(request.SleepDurationMinutes)),
+		ActivityCaloriesBurned: int64(int(request.ActivityCaloriesBurned)),
 		BloodGlucose:           request.BloodGlucose,
 		Weight:                 request.Weight,
 		Height:                 request.Height,
 		DeviceStatus:           request.DeviceStatus,
+		CreatedAt:              time.Time{},
+		UpdatedAt:              time.Time{},
+		DeletedAt:              gorm.DeletedAt{},
 	}
 
 	// 使用 GORM 插入数据到数据库

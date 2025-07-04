@@ -2,26 +2,29 @@ package models
 
 import (
 	"gorm.io/gorm"
+	"time"
 	"weikang/global"
 )
 
 type HealthData struct {
-	ID                     int     `gorm:"primaryKey"`            // 数据条目ID，设置为主键
-	DeviceID               string  `gorm:"size:255;comment:设备ID"` // 设备ID，设置字段大小为255，添加注释
-	UserID                 string  `gorm:"size:255;comment:用户ID"` // 用户ID，设置字段大小为255，添加注释
-	Timestamp              string  `gorm:"comment:数据记录时间"`        // 数据记录时间，添加注释
-	HeartRate              int     `gorm:"comment:心率（每分钟心跳数）"`    // 心率，添加注释
-	BloodPressureSystolic  int     `gorm:"comment:血压收缩压"`         // 血压收缩压，添加注释
-	BloodPressureDiastolic int     `gorm:"comment:血压舒张压"`         // 血压舒张压，添加注释
-	BodyTemperature        float64 `gorm:"comment:体温（摄氏度）"`       // 体温，添加注释
-	Steps                  int     `gorm:"comment:步数"`            // 步数，添加注释
-	SleepDurationMinutes   int     `gorm:"comment:睡眠时长（分钟）"`      // 睡眠时长，添加注释
-	ActivityCaloriesBurned int     `gorm:"comment:活动燃烧的卡路里"`      // 活动燃烧的卡路里，添加注释
-	BloodGlucose           float64 `gorm:"comment:血糖浓度"`          // 血糖浓度，添加注释
-	Weight                 float64 `gorm:"comment:体重（公斤）"`        // 体重，添加注释
-	Height                 float64 `gorm:"comment:身高（厘米）"`        // 身高，添加注释
-	DeviceStatus           string  `gorm:"comment:设备状态"`          // 设备状态，添加注释
-	gorm.Model
+	ID                     int64          `gorm:"column:id;type:bigint;primaryKey;not null;" json:"id"`
+	DeviceId               string         `gorm:"column:device_id;type:varchar(255);comment:设备ID;default:NULL;" json:"device_id"`                             // 设备ID
+	UserId                 string         `gorm:"column:user_id;type:varchar(255);comment:用户ID;default:NULL;" json:"user_id"`                                 // 用户ID
+	Timestamp              string         `gorm:"column:timestamp;type:longtext;comment:数据记录时间;" json:"timestamp"`                                            // 数据记录时间
+	HeartRate              int64          `gorm:"column:heart_rate;type:bigint;comment:心率（每分钟心跳数）;default:NULL;" json:"heart_rate"`                           // 心率（每分钟心跳数）
+	BloodPressureSystolic  int64          `gorm:"column:blood_pressure_systolic;type:bigint;comment:血压收缩压;default:NULL;" json:"blood_pressure_systolic"`      // 血压收缩压
+	BloodPressureDiastolic int64          `gorm:"column:blood_pressure_diastolic;type:bigint;comment:血压舒张压;default:NULL;" json:"blood_pressure_diastolic"`    // 血压舒张压
+	BodyTemperature        float64        `gorm:"column:body_temperature;type:double;comment:体温（摄氏度）;default:NULL;" json:"body_temperature"`                  // 体温（摄氏度）
+	Steps                  int64          `gorm:"column:steps;type:bigint;comment:步数;default:NULL;" json:"steps"`                                             // 步数
+	SleepDurationMinutes   int64          `gorm:"column:sleep_duration_minutes;type:bigint;comment:睡眠时长（分钟）;default:NULL;" json:"sleep_duration_minutes"`     // 睡眠时长（分钟）
+	ActivityCaloriesBurned int64          `gorm:"column:activity_calories_burned;type:bigint;comment:活动燃烧的卡路里;default:NULL;" json:"activity_calories_burned"` // 活动燃烧的卡路里
+	BloodGlucose           float64        `gorm:"column:blood_glucose;type:double;comment:血糖浓度;default:NULL;" json:"blood_glucose"`                           // 血糖浓度
+	Weight                 float64        `gorm:"column:weight;type:double;comment:体重（公斤）;default:NULL;" json:"weight"`                                       // 体重（公斤）
+	Height                 float64        `gorm:"column:height;type:double;comment:身高（厘米）;default:NULL;" json:"height"`                                       // 身高（厘米）
+	DeviceStatus           string         `gorm:"column:device_status;type:longtext;comment:设备状态;" json:"device_status"`                                      // 设备状态
+	CreatedAt              time.Time      `gorm:"column:created_at;type:datetime(3);default:CURRENT_TIMESTAMP(3);" json:"created_at"`
+	UpdatedAt              time.Time      `gorm:"column:updated_at;type:datetime(3);default:CURRENT_TIMESTAMP(3);" json:"updated_at"`
+	DeletedAt              gorm.DeletedAt `gorm:"column:deleted_at;type:datetime(3);default:NULL;" json:"deleted_at"`
 }
 
 func (h *HealthData) DataCreate() error {

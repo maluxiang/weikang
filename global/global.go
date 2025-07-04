@@ -28,42 +28,47 @@ type LocalConf struct {
 }
 type NacosConf struct {
 	Mysql struct {
-		Dsn string `json:"Dsn"`
-	} `json:"Mysql"`
+		User     string
+		Password string
+		Host     string
+		Port     int
+		Database string
+	}
 	Redis struct {
-		Addr     string `json:"Addr"`
-		Password string `json:"Password"`
-	} `json:"Redis"`
+		Host     string
+		Password string
+		Db       int
+	}
 	Es struct {
-		Url string `json:"Url"`
-	} `json:"Es"`
+		Url string
+	}
 	Mongo struct {
-		ApplyURI string `json:"ApplyURI"`
-	} `json:"Mongo"`
+		ApplyURI string
+	}
 	RabbitMQ struct {
-		Url string `json:"Url"`
-	} `json:"RabbitMQ"`
+		Url string
+	}
 	Consul struct {
-		RpcName       string `json:"RpcName"`
-		RpcPortString string `json:"RpcPortString"`
-		RpcPortInt    int    `json:"RpcPortInt"`
-		RpcAddress    string `json:"RpcAddress"`
-		Address       string `json:"Address"`
-	} `json:"Consul"`
+		RpcName       string
+		RpcPortString string
+		RpcPortInt    int
+		RpcAddress    string
+		Address       string
+	}
 	ChatGpt struct {
-		HostUrl   string `json:"hostUrl"`
-		Appid     string `json:"appid"`
-		ApiSecret string `json:"apiSecret"`
-		ApiKey    string `json:"apiKey"`
-	} `json:"ChatGpt"`
+		HostUrl   string
+		Appid     string
+		ApiSecret string
+		ApiKey    string
+	}
 	Emqx struct {
-		Agreement string `json:"agreement"`
-		Host      string `json:"host"`
-		Post      int    `json:"post"`
-	} `json:"Emqx"`
+		Agreement string
+		Host      string
+		Post      int
+	}
 	Minio struct {
-		Endpoint        string `json:"endpoint"`
-		AccessKeyId     string `json:"accessKeyId"`
-		SecretAccessKey string `json:"secretAccessKey"`
-	} `json:"Minio"`
+		Endpoint        string
+		AccessKeyId     string
+		SecretAccessKey string
+	}
 }

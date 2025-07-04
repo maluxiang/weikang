@@ -6,7 +6,8 @@ import (
 )
 
 func Elastic() {
-	client, err := elastic.NewClient(elastic.SetURL(global.NacosConfig.Es.Url), elastic.SetSniff(false))
+	appends := global.NacosConfig.Es.Url
+	client, err := elastic.NewClient(elastic.SetURL(appends), elastic.SetSniff(false))
 	if err != nil {
 		return
 	}

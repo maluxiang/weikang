@@ -1,21 +1,36 @@
 package start
 
 import (
+	"fmt"
 	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"time"
 	"weikang/global"
 	"weikang/models"
 )
 
 func Mysql() {
-	db, err := gorm.Open(mysql.Open(global.NacosConfig.Mysql.Dsn), &gorm.Config{})
+	appends := global.NacosConfig.Mysql
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", appends.User, appends.Password, appends.Host, appends.Port, appends.Database)
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		zap.S().Error("MySQL连接失败", err)
 		return
 	}
 	global.DB = db
-	err = db.AutoMigrate(&models.User{}, &models.SmartDoctor{}, &models.UploadFile{}, &models.HealthData{})
+	sqlDB, err := global.DB.DB()
+
+	// SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
+	sqlDB.SetMaxIdleConns(10)
+
+	// SetMaxOpenConns sets the maximum number of open connections to the database.
+	sqlDB.SetMaxOpenConns(100)
+
+	// SetConnMaxLifetime sets the maximum amount of time a connection may be reused.
+	sqlDB.SetConnMaxLifetime(time.Hour)
+
+	err = db.AutoMigrate(&models.Users{}, &models.SmartDoctor{}, &models.UploadFiles{}, &models.HealthData{}, &models.Points{}, &models.Patient{})
 	if err != nil {
 		zap.S().Error("MySQL迁移失败", err)
 		return

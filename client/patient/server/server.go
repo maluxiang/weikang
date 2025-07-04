@@ -23,15 +23,15 @@ func GetGRPCClient() (*grpc.ClientConn, error) {
 	}
 
 	// 从Consul中获取服务实例
-	services, _, err := client.Health().Service(global.NacosConfig.Consul.RpcName, "", false, nil)
+	_, _, err = client.Health().Service(global.NacosConfig.Consul.RpcName, "", false, nil)
 	if err != nil {
 		zap.S().Error("从Consul中获取服务实例失败", err)
 		return nil, err
 	}
 
 	// 选择一个服务实例
-	service := services[0]
-	grpcServerAddr := service.Service.Address + ":" + fmt.Sprintf("%d", service.Service.Port)
+	server := 8001
+	grpcServerAddr := "127.0.0.1" + ":" + fmt.Sprintf("%d", server)
 	conn, err := grpc.Dial(grpcServerAddr, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		zap.S().Error("连接GRPC服务器失败", err)

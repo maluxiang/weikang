@@ -2,13 +2,17 @@ package models
 
 import (
 	"gorm.io/gorm"
+	"time"
 	"weikang/global"
 )
 
 type SmartDoctor struct {
-	gorm.Model
-	Question string
-	Answer   string
+	ID        uint64         `gorm:"column:id;type:bigint UNSIGNED;primaryKey;not null;" json:"id"`
+	CreatedAt time.Time      `gorm:"column:created_at;type:datetime(3);default:CURRENT_TIMESTAMP(3);" json:"created_at"`
+	UpdatedAt time.Time      `gorm:"column:updated_at;type:datetime(3);default:CURRENT_TIMESTAMP(3);" json:"updated_at"`
+	DeletedAt gorm.DeletedAt `gorm:"column:deleted_at;type:datetime(3);default:NULL;" json:"deleted_at"`
+	Question  string         `gorm:"column:question;type:longtext;" json:"question"`
+	Answer    string         `gorm:"column:answer;type:longtext;" json:"answer"`
 }
 
 func (SmartDoctor) TableName() string {

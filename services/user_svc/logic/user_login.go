@@ -9,7 +9,7 @@ import (
 )
 
 func (Server) Login(ctx context.Context, in *user.LoginRequest) (*user.LoginResponse, error) {
-	u := models.User{
+	u := models.Users{
 		Username: in.User.Username,
 		Password: common.MD5(in.User.Password),
 	}
