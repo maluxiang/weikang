@@ -55,8 +55,8 @@ func EsSearchWhere(index string, begintime, endtime string, name string, status,
 
 // ElasticInit es添加
 // 调用时实例在test中的elastic
-func ElasticInit(Index string, Id string, data interface{}) error {
-	_, err := global.EsClient.Index().Index(Index).Id(Id).BodyJson(data).Do(context.Background())
+func ElasticInit(Index string, data interface{}) error {
+	_, err := global.EsClient.Index().Index(Index).BodyJson(data).Do(context.Background())
 	return err
 }
 

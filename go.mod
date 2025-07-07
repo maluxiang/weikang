@@ -13,6 +13,7 @@ require (
 	github.com/minio/minio-go/v7 v7.0.72
 	github.com/nacos-group/nacos-sdk-go v1.1.4
 	github.com/olivere/elastic/v7 v7.0.32
+	github.com/rabbitmq/amqp091-go v1.10.0
 	github.com/spf13/viper v1.19.0
 	go.mongodb.org/mongo-driver v1.15.1
 	go.uber.org/zap v1.27.0

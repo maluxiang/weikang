@@ -4,7 +4,6 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"net"
-	"weikang/pkg"
 	"weikang/services/points_svc/logic"
 	"weikang/services/points_svc/proto/points"
 	"weikang/services/points_svc/server"
@@ -16,7 +15,6 @@ func init() {
 }
 
 func main() {
-	pkg.InitMQTT()
 	listen, err := net.Listen("tcp", ":"+"8002")
 	if err != nil {
 		zap.S().Error("Listen error:", err)

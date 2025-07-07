@@ -55,12 +55,6 @@ type NacosConf struct {
 		RpcAddress    string
 		Address       string
 	}
-	ChatGpt struct {
-		HostUrl   string
-		Appid     string
-		ApiSecret string
-		ApiKey    string
-	}
 	Emqx struct {
 		Agreement string
 		Host      string

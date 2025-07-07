@@ -25,3 +25,8 @@ func Register(p Patient) (err error) {
 	err = global.DB.Create(&p).Error
 	return
 }
+
+func Find(name string, p Patient) Patient {
+	global.DB.Where("name = ?", name).Find(&p)
+	return p
+}

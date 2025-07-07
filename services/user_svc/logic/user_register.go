@@ -19,5 +19,8 @@ func (Server) Register(ctx context.Context, in *user.RegisterRequest) (*user.Reg
 	if err != nil {
 		return nil, err
 	}
+
+	// pkg.Publish("user.register", u.Username)
+
 	return &user.RegisterResponse{Success: true}, nil
 }
