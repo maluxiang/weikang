@@ -4,6 +4,7 @@ import (
 	"context"
 	"weikang/common"
 	"weikang/models"
+	"weikang/pkg"
 	"weikang/services/user_svc/proto/user"
 )
 
@@ -20,7 +21,7 @@ func (Server) Register(ctx context.Context, in *user.RegisterRequest) (*user.Reg
 		return nil, err
 	}
 
-	// pkg.Publish("user.register", u.Username)
+	pkg.Publish("2210a", u.Username)
 
 	return &user.RegisterResponse{Success: true}, nil
 }

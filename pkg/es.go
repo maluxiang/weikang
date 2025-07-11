@@ -6,8 +6,40 @@ import (
 	"fmt"
 	"github.com/olivere/elastic/v7"
 	"log"
+	"strconv"
 	"weikang/global"
+	"weikang/models"
 )
+
+// 同步设备到ES
+func SyncDeviceToES(device *models.MedicalDevice) error {
+	_, err := global.EsClient.Index().
+		Index("medical_device").
+		Id(strconv.FormatUint(device.ID, 10)).
+		BodyJson(device).
+		Do(context.Background())
+	return err
+}
+
+// ES搜索
+func SearchDeviceFromES(keyword string) ([]models.MedicalDevice, error) {
+	var result []models.MedicalDevice
+	query := elastic.NewMultiMatchQuery(keyword, "Name")
+	searchResult, err := global.EsClient.Search().
+		Index("medical_device").
+		Query(query).
+		Do(context.Background())
+	if err != nil {
+		return nil, err
+	}
+	for _, hit := range searchResult.Hits.Hits {
+		var d models.MedicalDevice
+		if err := json.Unmarshal(hit.Source, &d); err == nil {
+			result = append(result, d)
+		}
+	}
+	return result, nil
+}
 
 // esv7多条件搜索
 func EsSearchWhere(index string, begintime, endtime string, name string, status, page, size int) ([]byte, error) {

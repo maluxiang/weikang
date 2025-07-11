@@ -1,10 +1,10 @@
 package form
 
 type User struct {
-	Username string `validate:"required"  binding:"required"`
-	Password string `validate:"required"  binding:"required"`
-	Email    string `validate:"required"  binding:"required"`
-	Phone    string `validate:"required"  binding:"required"`
+	Username string `json:"username"  binding:"required"`
+	Password string `json:"password"  binding:"required"`
+	Email    string `json:"email"  binding:"required"`
+	Phone    string `json:"phone"  binding:"required"`
 }
 
 type Account struct {

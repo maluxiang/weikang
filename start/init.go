@@ -5,6 +5,7 @@ func Init() {
 	Viper()
 	Nacos()
 	Mysql()
+	InitRedis()
 	Mongo()
 	Elastic()
 	InitMinioClient()

@@ -7,7 +7,6 @@ import (
 	"gorm.io/gorm"
 	"time"
 	"weikang/global"
-	"weikang/models"
 )
 
 func Mysql() {
@@ -22,7 +21,7 @@ func Mysql() {
 	sqlDB, err := global.DB.DB()
 
 	// SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
-	sqlDB.SetMaxIdleConns(15)
+	sqlDB.SetMaxIdleConns(20)
 
 	// SetMaxOpenConns sets the maximum number of open connections to the database.
 	sqlDB.SetMaxOpenConns(150)
@@ -30,9 +29,4 @@ func Mysql() {
 	// SetConnMaxLifetime sets the maximum amount of time a connection may be reused.
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
-	err = db.AutoMigrate(&models.Users{}, &models.SmartDoctor{}, &models.UploadFiles{}, &models.HealthData{}, &models.Points{}, &models.Patient{})
-	if err != nil {
-		zap.S().Error("MySQL迁移失败", err)
-		return
-	}
 }

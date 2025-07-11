@@ -1,6 +1,7 @@
 package global
 
 import (
+	"github.com/go-redis/redis/v8"
 	"github.com/minio/minio-go/v7"
 	"github.com/olivere/elastic/v7"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -11,6 +12,7 @@ var (
 	LocalConfig     LocalConf
 	NacosConfig     NacosConf
 	DB              *gorm.DB
+	Rds             *redis.Client
 	MongoClient     *mongo.Client
 	MongoCollection *mongo.Collection
 	EsClient        *elastic.Client
@@ -55,10 +57,11 @@ type NacosConf struct {
 		RpcAddress    string
 		Address       string
 	}
-	Emqx struct {
-		Agreement string
-		Host      string
-		Post      int
+	ChatGpt struct {
+		HostUrl   string
+		Appid     string
+		ApiSecret string
+		ApiKey    string
 	}
 	Minio struct {
 		Endpoint        string

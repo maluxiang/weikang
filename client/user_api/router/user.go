@@ -8,6 +8,7 @@ import (
 func User(path *gin.RouterGroup) {
 	user := path.Group("/user")
 	{
+		user.POST("/onload", handler.UploadFile)
 		user.POST("/register", handler.Register)
 		user.POST("/create_account", handler.CreateAccount)
 		user.POST("/transfer", handler.Transfer)

@@ -13,6 +13,7 @@ type SmartDoctor struct {
 	DeletedAt gorm.DeletedAt `gorm:"column:deleted_at;type:datetime(3);default:NULL;" json:"deleted_at"`
 	Question  string         `gorm:"column:question;type:longtext;" json:"question"`
 	Answer    string         `gorm:"column:answer;type:longtext;" json:"answer"`
+	UserID    int            `gorm:"column:user_id;type:int(10);" json:"user_id"`
 }
 
 func (SmartDoctor) TableName() string {
