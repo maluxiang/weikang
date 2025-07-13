@@ -56,11 +56,14 @@ message CreateOrderRequest {
   uint64 product_id = 1;
   uint64 user_id = 2;
   int32 quantity = 3;
+  string payment_method = 4; // "alipay"、"wechat"、"other"
+
 }
 
 // 下单响应
 message CreateOrderResponse {
   string url = 1;
+  string message = 2;
 }
 
 // 支付回调请求
@@ -74,6 +77,138 @@ message AlipayResponse {
 
 }
 
+// 秒杀活动结构体
+message SeckillActivity {
+  uint64 id = 1;
+  uint64 device_id = 2;
+  string start_time = 3;
+  string end_time = 4;
+  float seckill_price = 5;
+  int32 stock = 6;
+}
+
+// 评论信息结构体
+message CommentInfo {
+  uint64 id = 1;
+  uint64 order_id = 2;
+  uint64 user_id = 3;
+  string content = 4;
+  int32 rating = 5;
+  string images = 6;
+  uint64 reply_to = 7;
+  bool is_anonymous = 8;
+  int32 status = 9;
+  int32 likes = 10;
+  string created_at = 11;
+  string user_name = 12;
+  bool is_liked = 13;
+}
+
+// 添加评论请求
+message AddOrderCommentRequest {
+  uint64 order_id = 1;
+  uint64 user_id = 2;
+  string content = 3;
+  int32 rating = 4;
+  string images = 5;
+  uint64 reply_to = 6;
+  bool is_anonymous = 7;
+}
+
+// 添加评论响应
+message AddOrderCommentResponse {
+  bool success = 1;
+  string message = 2;
+  CommentInfo comment = 3;
+}
+
+// 获取订单评论请求
+message GetOrderCommentsRequest {
+  uint64 order_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// 获取订单评论响应
+message GetOrderCommentsResponse {
+  repeated CommentInfo comments = 1;
+  int32 total = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+// 获取评论回复请求
+message GetCommentRepliesRequest {
+  uint64 comment_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+// 获取评论回复响应
+message GetCommentRepliesResponse {
+  repeated CommentInfo replies = 1;
+  int32 total = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+// 点赞评论请求
+message LikeCommentRequest {
+  uint64 comment_id = 1;
+  uint64 user_id = 2;
+}
+
+// 点赞评论响应
+message LikeCommentResponse {
+  bool success = 1;
+  string message = 2;
+  bool is_liked = 3;
+  int32 likes_count = 4;
+}
+
+// 删除评论请求
+message DeleteCommentRequest {
+  uint64 comment_id = 1;
+  uint64 user_id = 2;
+}
+
+// 删除评论响应
+message DeleteCommentResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// 站内信消息体
+message SiteMessage {
+  int64 id = 1;
+  int64 user_id = 2;
+  string title = 3;
+  string content = 4;
+  int32 is_read = 5;
+  string created_at = 6;
+}
+
+// 获取消息列表请求
+message GetMessageListRequest {
+  int64 user_id = 1;
+}
+
+// 获取消息列表响应
+message GetMessageListResponse {
+  repeated SiteMessage messages = 1;
+}
+
+// 标记已读请求
+message MarkMessageReadRequest {
+  int64 id = 1;
+}
+
+// 标记已读响应
+message MarkMessageReadResponse {
+  string msg = 1;
+}
+
+
 // gRPC服务定义
 service MedicalService {
   // 添加医疗设备
@@ -84,10 +219,29 @@ service MedicalService {
 
   // 搜索设备
   rpc SearchDevice(SearchDeviceRequest) returns (SearchDeviceResponse);
+
   //购买医疗商品
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
 
   //支付回调
-  rpc Alipay(AlipayRequest) returns (AlipayResponse);
+  // rpc Alipay(AlipayRequest) returns (AlipayResponse);
+
+  //添加评论
+  rpc AddOrderComment(AddOrderCommentRequest) returns (AddOrderCommentResponse);
+
+  //获取订单评论
+  rpc GetOrderComments(GetOrderCommentsRequest) returns (GetOrderCommentsResponse);
+
+  //获取评论回复
+  rpc GetCommentReplies(GetCommentRepliesRequest) returns (GetCommentRepliesResponse);
+
+  //点赞评论
+  rpc LikeComment(LikeCommentRequest) returns (LikeCommentResponse);
+
+  //删除评论
+  rpc DeleteComment(DeleteCommentRequest) returns (DeleteCommentResponse);
+
+  rpc GetMessageList(GetMessageListRequest) returns (GetMessageListResponse);
+  rpc MarkMessageRead(MarkMessageReadRequest) returns (MarkMessageReadResponse);
 
 }

@@ -1,9 +1,17 @@
 {
 	"pages": [
 		{
-			"path": "pages/index/index",
+			"path": "pages/data/product-list",
+			"style": { "navigationBarTitleText": "商品列表" }
+		},
+		{
+			"path": "pages/data/product-detail",
+			"style": { "navigationBarTitleText": "商品详情" }
+		},
+		{
+			"path": "pages/data/comment",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "评论列表"
 			}
 		},
 		{

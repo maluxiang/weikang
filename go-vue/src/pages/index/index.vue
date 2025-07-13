@@ -1,26 +1,17 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view>
-			<text class="title">{{title}}</text>
-		</view>
-	</view>
+  <view>
+    <button @click="goComment">去评论列表</button>
+  </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
-		}
-	}
+export default {
+  methods: {
+    goComment() {
+      uni.navigateTo({ url: '/pages/data/comment' })
+    }
+  }
+}
 </script>
 
 <style>

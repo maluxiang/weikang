@@ -63,6 +63,7 @@ func UploadFile(c *gin.Context) {
 		c.String(http.StatusInternalServerError, fmt.Sprintf("上传文件到 MinIO 失败: %s", err.Error()))
 		return
 	}
+
 	Up := models.UploadFiles{
 		FileName: bucketName,
 		FilePath: objectName,

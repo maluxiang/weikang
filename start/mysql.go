@@ -29,4 +29,5 @@ func Mysql() {
 	// SetConnMaxLifetime sets the maximum amount of time a connection may be reused.
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
+	//global.DB.AutoMigrate(&models.OrderComment{}, &models.CommentLike{})
 }

@@ -2,83 +2,103 @@ package logic
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"gorm.io/gorm"
 	"time"
 	"weikang/global"
 	"weikang/models"
 	"weikang/services/medical_svc/proto/medical"
 )
 
-func generateOrderNumber() string {
-	return fmt.Sprintf("MD%v", time.Now().UnixNano())
-}
-
 func (s Server) CreateOrder(ctx context.Context, in *medical.CreateOrderRequest) (*medical.CreateOrderResponse, error) {
-	//查询用户
+	//参数校验
+	if in.ProductId == 0 || in.UserId == 0 || in.Quantity <= 0 {
+		return &medical.CreateOrderResponse{
+			Message: "参数错误",
+		}, nil
+	}
+
+	// 查询用户
 	var user models.Users
-	err := global.DB.First(&user, in.UserId).Error
-	if err != nil {
-		return &medical.CreateOrderResponse{Url: ""}, fmt.Errorf("用户不存在")
+	if err := global.DB.Where("id = ?", in.UserId).First(&user).Error; err != nil {
+		return &medical.CreateOrderResponse{
+			Message: "用户不存在",
+		}, nil
 	}
 
 	//查询商品
 	var device models.MedicalDevice
-	err = global.DB.First(&device, in.ProductId).Error
-	if err != nil {
-		return &medical.CreateOrderResponse{Url: ""}, fmt.Errorf("商品不存在")
+	if err := global.DB.Where("id = ?", in.ProductId).First(&device).Error; err != nil {
+		return &medical.CreateOrderResponse{
+			Message: "商品不存在",
+		}, nil
 	}
 	if device.Stock < int(in.Quantity) {
-		return &medical.CreateOrderResponse{Url: ""}, fmt.Errorf("库存不足")
+		return &medical.CreateOrderResponse{
+			Message: "库存不足",
+		}, nil
 	}
+	//生成订单号
+	orderNumber := fmt.Sprintf("ODR%d%d", in.UserId, time.Now().UnixNano())
+	amount := float64(in.Quantity) * device.Price
+	//事务处理
+	err := global.DB.Transaction(func(tx *gorm.DB) error {
+		// 3.1 扣减库存
+		if err := tx.Model(&models.MedicalDevice{}).
+			Where("id = ? AND stock >= ?", in.ProductId, in.Quantity).
+			Update("stock", gorm.Expr("stock - ?", in.Quantity)).Error; err != nil {
+			return errors.New("扣减库存失败")
+		}
 
-	//创建订单
-	orderNumber := generateOrderNumber()
-	totalAmount := device.Price * float64(in.Quantity)
-	order := models.Order{
-		OrderNumber:     orderNumber,
-		UserID:          in.UserId,
-		TotalAmount:     totalAmount,
-		PaymentMethod:   "alipay",
-		PaymentStatus:   0,
-		ShippingAddress: "",
-		ContactPhone:    user.Phone,
-		Remark:          "",
-	}
-	err = global.DB.Create(&order).Error
+		//写入订单表
+		order := models.Order{
+			OrderNumber:   orderNumber,
+			UserID:        in.UserId,
+			TotalAmount:   amount,
+			PaymentMethod: in.PaymentMethod,
+			PaymentStatus: 0, // 未支付
+			ContactPhone:  user.Phone,
+		}
+		if err := tx.Create(&order).Error; err != nil {
+			return err
+		}
+
+		// 3.4 写入订单明细表
+		orderItem := models.OrderItem{
+			OrderID:         order.ID,
+			MedicalDeviceID: device.ID,
+			DeviceName:      device.Name,
+			DeviceModel:     device.Model,
+			Quantity:        int(in.Quantity),
+			UnitPrice:       device.Price,
+			SubtotalAmount:  float64(in.Quantity) * device.Price,
+		}
+		if err := tx.Create(&orderItem).Error; err != nil {
+			return err
+		}
+
+		return nil
+	})
+
 	if err != nil {
-		return &medical.CreateOrderResponse{Url: ""}, fmt.Errorf("订单创建失败")
+		return &medical.CreateOrderResponse{
+			Message: "下单失败：" + err.Error(),
+		}, nil
 	}
-	orderitem := models.OrderItem{
-		OrderID:         order.ID,
-		MedicalDeviceID: in.ProductId,
-		DeviceName:      device.Name,
-		DeviceModel:     device.Model,
-		Quantity:        int(in.Quantity),
-		UnitPrice:       device.Price,
-		SubtotalAmount:  totalAmount,
-	}
-	global.DB.Create(&orderitem)
 
-	// 3. 扣减库存
-	global.DB.Model(&device).Update("stock", device.Stock-int(in.Quantity))
-	//乐观锁防止超卖，扣减库存
-	//res := global.DB.Model(&device).Where("stock > 0").Update("stock", gorm.Expr("stock - ?", in.Quantity))
-	//if res.RowsAffected == 0 {
-	//	return &medical.CreateOrderResponse{
-	//		Url: "",
-	//	}, nil
-	//}
-	// 4. 生成支付宝支付链接
+	// 4. 返回支付URL（如有支付需求，可集成支付宝/微信等）
 	payment := GetPayment(in.PaymentMethod)
-	if payment == nil {
-		return &medical.CreateOrderResponse{Message: "不支持的支付方式"}, nil
-	}
-	payUrl, err := payment.Pay(device.Name, orderNumber, totalAmount)
+	pay, err := payment.Pay("支付", orderNumber, amount)
 	if err != nil {
-		return &medical.CreateOrderResponse{Message: "支付链接生成失败"}, nil
+		return nil, err
 	}
+
+	s.SendSiteMessage(int64(in.UserId), "购买成功", "您的订单已购买成功，感谢您的支持！")
+
+	// 这里只返回订单号
 	return &medical.CreateOrderResponse{
-		Url:     payUrl,
-		Message: "下单成功，请支付",
+		Url:     pay, // 可集成支付后返回支付链接
+		Message: "下单成功",
 	}, nil
 }

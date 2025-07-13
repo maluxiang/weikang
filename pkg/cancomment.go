@@ -9,8 +9,8 @@ import (
 
 var ctx = context.Background()
 
-func CanComment(userID uint64) bool {
-	key := fmt.Sprintf("comment:limit:user:%d", userID)
+func CanComment(orderId uint64, userID uint64) bool {
+	key := fmt.Sprintf("comment:limit:order:%d:user:%d", orderId, userID)
 	// 每次评论，计数加1
 	count, _ := global.Rds.Incr(ctx, key).Result()
 	if count == 1 {
